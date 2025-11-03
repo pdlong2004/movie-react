@@ -1,0 +1,23 @@
+.movie-upcoming{
+    color: var(--color-primary);
+
+}
+
+.movie-upcoming__info{
+    transform: translateY(calc(-100% + 50px));
+}
+
+
+.movie-upcoming__info-heading {
+    color: var(--black-color);
+}
+
+.movie-upcominng-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.movie-upcominng-btn .btn{
+    padding: 8px 20px;
+    font-size: 1.6rem;
+}

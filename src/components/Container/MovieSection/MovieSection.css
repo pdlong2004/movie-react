@@ -1,0 +1,49 @@
+.movie-section {
+    background: url("https://homepage.momocdn.net/img/momo-upload-api-210701105436-637607336767432408.jpg") 
+                no-repeat center center / contain,#000;
+}
+
+.movie-section__heading{
+    color: var(--white-color) !important;
+}
+
+
+.movie-section__info {
+    transform: translateY(calc(-100% + 70px));
+}
+
+.movie-number {
+    font-size: 4.8rem;
+    font-weight: 700;
+    position: relative;
+    opacity: 0.9;
+    line-height: 1;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.5), 2px 2px 8px rgba(0, 0, 0, 0.7);
+    color:var(--white-color);
+}
+
+
+
+.movie-section__info-heading {
+    color: var(--white-color);
+}
+
+
+.movie-section__info-text {
+    color: #a69ba2;
+}
+
+.movie-rating {
+    font-size: 1.3rem;
+    margin: 4px 0 0 0;
+    color: var(--white-color);
+}
+
+.movie-rating i{
+    color: #ffdb0d;
+    font-size: 1rem;
+}
+
+.movie-rating:hover{
+    cursor:default;
+}

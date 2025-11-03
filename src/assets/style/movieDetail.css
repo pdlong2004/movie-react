@@ -1,0 +1,273 @@
+.main{
+    margin-top: 64px;
+}
+
+.breadcrumb {
+    border-top: 1px solid #e5e5e5;
+}
+
+.breadcrumb__list {
+    padding: 16px 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb__item {
+    font-size: 1.4rem;
+}
+
+.breadcrumb__link {
+    text-decoration: none;
+    padding: 0 12px 0 0;
+    color: #292427;
+}
+
+.breadcrumb__link:hover{
+    color: var(--color-primary);
+}
+
+.breadcrumb__icon-house{
+    font-size: 1.6rem;
+}
+
+.breadcrumb__icon-right{
+    color: #e5e5e5;
+}
+
+.breadcrumb__item--active{
+    color: var(--text-color);
+}
+
+.movie-detail {
+    position: relative;
+    background: url("https://cinema.momocdn.net/img/51966795810919346-hinhh1.jpg?size=L") 
+                no-repeat center center / cover, #000;
+    height: 480px;
+    color: #fff; 
+    display: flex;
+}
+
+.movie-detail::after {
+    content: "";
+    position: absolute;
+    z-index: 1; 
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    
+    background-image: linear-gradient(
+        to right,
+        rgba(0, 0, 0, 1) 150px,
+        rgba(0, 0, 0, 0.6) 100%
+    );
+}
+
+.movie-detail-content{
+    z-index: 2;
+}
+
+.movie-detail-content {
+    z-index: 2;
+    display: flex;
+    align-items: center;
+}
+
+.movie-detail__poster {
+    width: 255px;
+    height: 363px;
+    position: relative;
+}
+
+.movie-detail__poster-img {
+    width: 255px;
+    height: 100%;
+}
+
+
+
+.movie-detail__info{
+    margin-left: 40px;
+    height: 363px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.movie-detail__age.movie-condition {
+    position: static;
+    font-size: 1.2rem;
+    max-width: 30px;
+}
+
+.movie-detail__title {
+    font-size: 3.6rem;
+    margin-top: 8px;
+    line-height: 3.6rem;
+}
+
+.movie-detail__meta {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    color: #FFFFFF99;
+    font-size: 1.6rem;
+    margin-top: 4px;
+}
+
+.movie-detail__icon {
+    margin: 0 8px;
+}
+
+.movie-detail__ratings {
+    padding: 12px 0 8px;
+    display: flex;
+}
+
+.movie-detail__start {
+    height: 32px;
+    margin-right: 4px;
+}
+
+.movie-detail__rating-score {
+    font-size: 2.4rem;
+    font-weight: bold;
+    line-height: 32px;
+}
+
+.movie-detail__rating--local {
+    display: flex;
+    align-items: center;
+}
+
+.movie-detail__rating-count {
+    margin-left: 8px;
+    color: #A69BA2;
+    font-size: 1rem;
+}
+
+
+.movie-detail__rating-count span {
+    color: var(--white-color);
+    font-weight: bold;
+}
+
+.movie-detail__rating--imdb {
+    margin-left: 12px;
+    display: flex;
+    align-items: center;
+}
+
+.movie-detail__rating--imdb svg{
+    height: 22px;
+}
+
+.movie-detail__tagline {
+    margin-bottom: 12px;
+    font-size: 1.6rem;
+    color: #FFFFFF99;
+    display: block;
+}
+
+.movie-detail__description-title{
+    font-size: 1.6rem;
+}
+
+.movie-detail__description-text {
+    margin-top: 4px;
+    font-size: 1.4rem;
+    color: #FFFFFFB3;
+    line-height: 2rem;
+}
+
+.movie-detail__description-continue {
+    color: #FFEC41;
+}
+
+.movie-detail__description-continue:hover{
+    cursor: pointer;
+    text-decoration: underline;
+}
+
+span.full-text {
+    display: none;
+}
+
+.movie-detail__description-text.expanded .full-text {
+  display: inline;
+}
+
+
+.movie-detail__extra {
+    display: flex;
+    margin: 12px 0 8px 0;
+    font-size: 1.4rem;
+}
+
+.movie-detail__extra-item {
+    display: flex;
+    flex-direction: column;
+}
+
+.movie-detail__extra-item + .movie-detail__extra-item{
+    margin-left: 20px;
+}
+
+.movie-detail__extra-item strong{
+    margin-top: 4px;
+}
+
+.movie-detail__extra-item p{
+    color: #FFFFFF80;
+}
+
+.movie-detail__actions {
+    display: flex;
+    align-items: center;
+}
+
+.movie-detail__btn {
+    display: flex;
+    padding: 8px 0;
+    align-items: center;
+    cursor: pointer;
+}
+
+.movie-detail__btn:hover p{
+    text-decoration: underline;
+}
+
+.movie-detail__btn p{
+    margin-left: 6px;
+    font-size: 1.4rem;
+}
+
+.btn-ck{
+    width: 24px;
+    height: 24px;
+    display: block;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    display: flex;
+}
+
+.btn-ck i {
+    font-size: 1.2rem;
+}
+
+
+
+.btn--trailer {   
+    border: 2px solid #d42a87;   
+}
+
+
+.movie-detail__btn--review{
+    margin-left: 16px;
+}
+
+.btn--review{
+    border: 2px solid #ffec41;
+}
