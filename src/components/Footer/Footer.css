@@ -1,0 +1,146 @@
+.footer {
+    color: #8e8b8d;
+    background-color: #1c171a;
+    padding: 28px 0;
+}
+
+
+.footer__container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1.7fr 1.5fr;
+    gap: 20px;
+}
+
+.footer__title {
+    text-transform: uppercase;
+    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    color: #d2d1d1;
+}
+
+
+.footer__list {
+    list-style: none;
+    padding: 0;
+    font-size: 1.4rem;
+}
+
+
+.footer__item {
+    margin-top: 12px;
+    display: flex;
+    align-items: center;
+    font-size: 1.4rem;
+}
+
+.footer__icon img {
+    width: 24px;
+    margin-right: 8px;
+}
+
+
+.footer__title svg {
+    height: 16px;
+    margin-left: 10px;
+}
+
+
+.footer__column--support {
+    display: grid;
+    row-gap: 12px;
+    font-size: 1.4rem;
+}
+
+.footer__text span {
+    color: #d2d1d1;
+}
+
+.footer__text a {
+    text-decoration: none;
+    color: #d2d1d1;
+}
+
+.footer-card {
+    display: flex;
+    align-items: center;
+    position: relative;
+    margin-top: 12px;
+}
+
+.footer-card__subtitle {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.footer-card__title {
+    color: var(--white-color);
+    font-weight: bold;
+    font-size: 1.2rem;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.footer-card__text {
+    width: 54%;
+    padding: 4px 8px 4px 40px;
+    position: relative;
+    border: 1px solid;
+    border-radius: 3px;
+}
+
+.footer-card__icon-svg {
+    height: 28px;
+    position: absolute;
+    color: var(--white-color);
+    left: 10px;
+}
+
+
+.footer__column.footer__column--contact{
+    display: grid;
+    row-gap: 12px;
+    font-size: 1.4rem;
+}
+
+.footer__title-contact {
+    margin-top: 10px;
+}
+
+
+.footer__social {
+    display: flex;
+    align-items: center;
+}
+
+.footer__social img {
+    margin-left: 10px;
+}
+
+.footer__social-title {
+    color: #d2d1d1;
+}
+
+.footer__apps {
+    display: flex;
+    justify-content: space-around;
+}
+
+.footer__download-app-img {
+    height: 40px;
+    width: 140px;
+}
+
+.footer__download-app-img-chplay {
+    border: 1px solid #989898;
+    border-radius: 6px;
+}
+
+.footer__certification {
+    display: flex;
+    align-items: center;
+}
+
+.footer__certification img {
+    margin-left: 10px;
+}

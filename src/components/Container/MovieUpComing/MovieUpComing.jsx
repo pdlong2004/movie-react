@@ -1,69 +1,71 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
-import './MovieUpComing.css'
-import '../../../assets/style/base.css'
+import { useNavigate } from 'react-router-dom'; 
+import './MovieUpComing.css';
+import '../../../assets/style/base.css';
 
-function MovieList() {
+function MovieUpComing() {
   const [movies, setMovies] = useState([]);
   const [activeTrailer, setActiveTrailer] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const moviesPerPage = 5;
+  const navigate = useNavigate(); 
 
   useEffect(() => {
-  const API_KEY = 'ab5d2273d38ebf6426d9efe334ecd2ff';
+    const API_KEY = 'ab5d2273d38ebf6426d9efe334ecd2ff';
 
-  const fetchMovies = async () => {
-    try {
-      
-      const genreRes = await axios.get(
-        `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=vi-VN`
-      );
-      const genres = genreRes.data.genres;
+    const fetchMovies = async () => {
+      try {
+        const genreRes = await axios.get(
+          `https://api.themoviedb.org/3/genre/movie/list?api_key=${API_KEY}&language=vi-VN`
+        );
+        const genres = genreRes.data.genres;
 
-      
-      const movieRes = await axios.get(
-        `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=vi-VN&page=1`
-      );
+        const movieRes = await axios.get(
+          `https://api.themoviedb.org/3/movie/upcoming?api_key=${API_KEY}&language=vi-VN&page=1`
+        );
 
-      const moviesWithGenres = await Promise.all(
-        movieRes.data.results.map(async (movie) => {
-          const movieGenres = movie.genre_ids
-            .map((id) => genres.find((g) => g.id === id)?.name)
-            .filter(Boolean);
+        const moviesWithGenres = await Promise.all(
+          movieRes.data.results.map(async (movie) => {
+            const movieGenres = movie.genre_ids
+              .map((id) => genres.find((g) => g.id === id)?.name)
+              .filter(Boolean);
 
-          const movieVideosRes = await axios.get(
-            `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}&language=en-US`
-          );
-          const trailers = movieVideosRes.data.results.filter(
-            (v) => v.type === 'Trailer' && v.site === 'YouTube'
-          );
-          const trailerUrl = trailers.length > 0 ? `https://www.youtube.com/embed/${trailers[0].key}` : null;
+            const movieVideosRes = await axios.get(
+              `https://api.themoviedb.org/3/movie/${movie.id}/videos?api_key=${API_KEY}&language=en-US`
+            );
+            const trailers = movieVideosRes.data.results.filter(
+              (v) => v.type === 'Trailer' && v.site === 'YouTube'
+            );
+            const trailerUrl =
+              trailers.length > 0
+                ? `https://www.youtube.com/embed/${trailers[0].key}`
+                : null;
 
-          return {
-            ...movie,
-            genre: movieGenres
-              .slice(0, 2)
-              .map((g) => g.replace(/Phim/g, '').trim())
-              .join(', ') || 'Chưa có thể loại',
-            age: 'Tất cả',
-            poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
-            summary: movie.overview,
-            trailer: trailerUrl,
-          };
-        })
-      );
+            return {
+              ...movie,
+              genre:
+                movieGenres
+                  .slice(0, 2)
+                  .map((g) => g.replace(/Phim/g, '').trim())
+                  .join(', ') || 'Chưa có thể loại',
+              age: 'Tất cả',
+              poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
+              summary: movie.overview,
+              trailer: trailerUrl,
+            };
+          })
+        );
 
-      setMovies(moviesWithGenres);
-    } catch (err) {
-      console.error(err);
-    }
-  };
+        setMovies(moviesWithGenres);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  fetchMovies();
-}, []);
+    fetchMovies();
+  }, []);
 
-
-  
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
@@ -77,15 +79,18 @@ function MovieList() {
 
           {/* Nút chuyển trang */}
           {currentPage < totalPages && (
-            <div className="movie-switch-page movie-next js-next" onClick={() => setCurrentPage(currentPage + 1)}>
+            <div
+              className="movie-switch-page movie-next js-next"
+              onClick={() => setCurrentPage(currentPage + 1)}
+            >
               <i className="fa-solid fa-angle-right"></i>
             </div>
           )}
           {currentPage > 1 && (
-            <div 
-                className="movie-switch-page movie-return js-return" 
-                onClick={() => setCurrentPage(currentPage - 1)}
-                style={{ display: 'block' }}
+            <div
+              className="movie-switch-page movie-return js-return"
+              onClick={() => setCurrentPage(currentPage - 1)}
+              style={{ display: 'block' }}
             >
               <i className="fa-solid fa-angle-left"></i>
             </div>
@@ -94,33 +99,51 @@ function MovieList() {
           {movies.length > 0 && (
             <div className="movie-page js-movie-active active">
               <div className="grid__row">
-                {currentMovies.map((movie, index) => (
-                  <div key={movie.id} className="grid__column-2-4 movie-content js-movie-content">
-                    <div className="movie-card">
+                {currentMovies.map((movie) => (
+                  <div
+                    key={movie.id}
+                    className="grid__column-2-4 movie-content js-movie-content"
+                  >
+                    <div
+                      className="movie-card"
+                      onClick={() => navigate(`/movie/${movie.id}`)} 
+                      style={{ cursor: 'pointer' }}
+                    >
                       <div className="movie-items">
                         <div className="movie-condition">{movie.age}</div>
-                        <img className="movie-img" src={movie.poster} alt={movie.title} />
-                        <div 
-                            className="btn-play movie-play" 
-                            onClick={() => setActiveTrailer(movie.id)}
+                        <img
+                          className="movie-img"
+                          src={movie.poster}
+                          alt={movie.title}
+                        />
+                        <div
+                          className="btn-play movie-play"
+                          onClick={(e) => {
+                            e.stopPropagation(); 
+                            setActiveTrailer(movie.id);
+                          }}
                         >
                           <i className="fa-solid fa-play"></i>
                         </div>
                       </div>
                       <div className="movie-info movie-upcoming__info">
-                        <h3 className="movie-info-heading movie-upcoming__info-heading">{movie.title}</h3>
-                        <p className="movie-info-text movie-upcoming__info-text">{movie.genre}</p>
+                        <h3 className="movie-info-heading movie-upcoming__info-heading">
+                          {movie.title}
+                        </h3>
+                        <p className="movie-info-text movie-upcoming__info-text">
+                          {movie.genre}
+                        </p>
                       </div>
                     </div>
 
                     {/* Trailer */}
                     {activeTrailer === movie.id && (
-                      <div 
+                      <div
                         className="search-overley trailer-movie js-overlay"
                         style={{ display: 'block' }}
                         onClick={() => setActiveTrailer(null)}
-                    >
-                        <div 
+                      >
+                        <div
                           className="list-scrollbar trailer-movie-content"
                           onClick={(e) => e.stopPropagation()}
                         >
@@ -135,13 +158,24 @@ function MovieList() {
                             allowFullScreen
                           ></iframe>
                           <div className="trailer-movie-info">
-                            <img src={movie.poster} alt={movie.title} className="trailer-movie-img" />
+                            <img
+                              src={movie.poster}
+                              alt={movie.title}
+                              className="trailer-movie-img"
+                            />
                             <div className="trailer-movie-summary">
-                              <h3 className="trailer-movie-heading">{movie.title}</h3>
-                              <p className="trailer-movie-text">{movie.summary || 'Không có tóm tắt'}</p>
+                              <h3 className="trailer-movie-heading">
+                                {movie.title}
+                              </h3>
+                              <p className="trailer-movie-text">
+                                {movie.summary || 'Không có tóm tắt'}
+                              </p>
                               <div className="trailer-movie-buttons">
                                 <button className="btn">Đặt vé</button>
-                                <button className="btn btn-close js-close" onClick={() => setActiveTrailer(null)}>
+                                <button
+                                  className="btn btn-close js-close"
+                                  onClick={() => setActiveTrailer(null)}
+                                >
                                   Đóng
                                 </button>
                               </div>
@@ -150,21 +184,19 @@ function MovieList() {
                         </div>
                       </div>
                     )}
-
                   </div>
                 ))}
-
               </div>
             </div>
           )}
 
-            <div class="movie-upcominng-btn">
-                <button class="btn">Tìm phim chiếu rạp</button>
-            </div>
+          <div className="movie-upcominng-btn">
+            <button className="btn">Tìm phim chiếu rạp</button>
+          </div>
         </div>
       </div>
     </>
   );
 }
 
-export default MovieList;
+export default MovieUpComing;

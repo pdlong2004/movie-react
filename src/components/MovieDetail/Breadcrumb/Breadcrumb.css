@@ -1,0 +1,36 @@
+.breadcrumb {
+    border-top: 1px solid #e5e5e5;
+}
+
+.breadcrumb__list {
+    padding: 16px 0;
+    list-style: none;
+    display: flex;
+    align-items: center;
+}
+
+.breadcrumb__item {
+    font-size: 1.4rem;
+}
+
+.breadcrumb__link {
+    text-decoration: none;
+    padding: 0 12px 0 0;
+    color: #292427;
+}
+
+.breadcrumb__link:hover{
+    color: var(--color-primary);
+}
+
+.breadcrumb__icon-house{
+    font-size: 1.6rem;
+}
+
+.breadcrumb__icon-right{
+    color: #e5e5e5;
+}
+
+.breadcrumb__item--active{
+    color: var(--text-color);
+}

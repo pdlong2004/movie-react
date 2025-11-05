@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from "react-router-dom";
 import logo from '../../assets/img/logo.svg';
 import cinemaIcon from '../../assets/img/cenima.svg';
 import '../../assets/font/fontawesome-free-7.0.0-web/fontawesome-free-7.0.0-web/css/all.min.css';
@@ -167,7 +168,12 @@ const Header = () => {
               <ul className="list-scrollbar search__list">
                 {filteredMovies.length > 0 ? (
                   filteredMovies.map((movie) => (
-                    <a href="#" key={movie.id} className="search-link">
+                    <Link
+                      to={`/movie/${movie.id}`}
+                      key={movie.id}
+                      className="search-link"
+                      onClick={() => setSearchActive(false)} 
+                    >
                       <li className="search-items">
                         <img
                           src={`https://image.tmdb.org/t/p/w200${movie.poster_path}`}
@@ -178,16 +184,14 @@ const Header = () => {
                           <h3 className="search-info__heading">{movie.title}</h3>
                           <p className="search-info__type">
                             {movie.genres && movie.genres.length > 0
-                              ? movie.genres.join(', ')
-                              : 'Chưa có thể loại'}
+                              ? movie.genres.join(", ")
+                              : "Chưa có thể loại"}
                           </p>
                           <div className="search-meta">
                             <span className="search__rating">
                               <i className="fa-solid fa-star"></i>
                               <span>
-                                {movie.vote_average
-                                  ? movie.vote_average.toFixed(1)
-                                  : 'N/A'}
+                                {movie.vote_average ? movie.vote_average.toFixed(1) : "N/A"}
                               </span>
                             </span>
                             <span className="search__status">
@@ -210,7 +214,8 @@ const Header = () => {
                           </div>
                         </div>
                       </li>
-                    </a>
+                    </Link>
+
                   ))
                 ) : (
                   <p style={{ padding: '10px', color: '#ccc' }}>
