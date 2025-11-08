@@ -39,16 +39,11 @@ html{
     
 }
 
-.grid__column-2-4{
-    padding-left:8px;
-    padding-right:8px;
-    width: 20%;
-}
 
-.grid__column-3-7{
-    padding-left:5px;
-    padding-right:5px;
-    width: 35%;
+.grid_col-5{
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
 }
 
 
@@ -336,16 +331,6 @@ html{
     border-radius: 8px;
 }
 
-.movie-condition{
-    position: absolute;
-    min-width: 20px;
-    padding: 0 4px;
-    left: 8px;
-    top: 8px;
-    background-color: #e88021;
-    color: var(--white-color);
-    border-radius: 2px;
-}
 
 
 .movie-img{
@@ -375,13 +360,48 @@ html{
     font-size: 1.3rem;
     color: #a69ba2;
     margin: 4px 0 0 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }
+
 
 
 .movie-info:hover .movie-info-text,
 .movie-info:hover .movie-info-heading {
     cursor: pointer;
     color: var(--color-primary);
+}
+
+
+.age-limit{
+    font-size: 1rem;
+    padding: 3px 4px;
+    color: var(--white-color);    
+    border-radius: 3px;
+    margin-bottom: 4px;
+}
+
+.age-13\+ {
+    background-color: #DDBC3F;
+}
+
+
+.age-16\+{
+    background-color: #E88021;
+}
+
+.age-18\+ {
+    background-color: #9B2020;
+}
+
+
+.movie-condition{
+    position: absolute;
+    left: 8px;
+    top: 8px;
+    z-index: 2;
 }
 
 

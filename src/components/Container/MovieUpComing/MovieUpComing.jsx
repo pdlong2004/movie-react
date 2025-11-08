@@ -66,6 +66,14 @@ function MovieUpComing() {
     fetchMovies();
   }, []);
 
+  // 🔹 Hàm tính độ tuổi
+   const renderAgeLimit = (vote) => {
+    if (vote >= 8) return 'P';    
+    if (vote >= 7) return '13+';    
+    if (vote >= 6) return '16+';    
+    return '18+';                  
+  };
+
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
   const currentMovies = movies.slice(indexOfFirstMovie, indexOfLastMovie);
@@ -99,93 +107,97 @@ function MovieUpComing() {
           {movies.length > 0 && (
             <div className="movie-page js-movie-active active">
               <div className="grid__row">
-                {currentMovies.map((movie) => (
-                  <div
-                    key={movie.id}
-                    className="grid__column-2-4 movie-content js-movie-content"
-                  >
+                <div className='grid_col-5'>
+                  {currentMovies.map((movie) => (
                     <div
-                      className="movie-card"
-                      onClick={() => navigate(`/movie/${movie.id}`)} 
-                      style={{ cursor: 'pointer' }}
+                      key={movie.id}
+                      className=" movie-content js-movie-content"
                     >
-                      <div className="movie-items">
-                        <div className="movie-condition">{movie.age}</div>
-                        <img
-                          className="movie-img"
-                          src={movie.poster}
-                          alt={movie.title}
-                        />
-                        <div
-                          className="btn-play movie-play"
-                          onClick={(e) => {
-                            e.stopPropagation(); 
-                            setActiveTrailer(movie.id);
-                          }}
-                        >
-                          <i className="fa-solid fa-play"></i>
+                      <div
+                        className="movie-card"
+                        onClick={() => navigate(`/movie/${movie.id}`)} 
+                        style={{ cursor: 'pointer' }}
+                      >
+                        <div className="movie-items">
+                            <div className={`movie-condition age-limit age-${renderAgeLimit(movie.vote_average)}`}>
+                              {renderAgeLimit(movie.vote_average)}
+                            </div>
+                          <img
+                            className="movie-img"
+                            src={movie.poster}
+                            alt={movie.title}
+                          />
+                          <div
+                            className="btn-play movie-play"
+                            onClick={(e) => {
+                              e.stopPropagation(); 
+                              setActiveTrailer(movie.id);
+                            }}
+                          >
+                            <i className="fa-solid fa-play"></i>
+                          </div>
+                        </div>
+                        <div className="movie-info movie-upcoming__info">
+                          <h3 className="movie-info-heading movie-upcoming__info-heading">
+                            {movie.title}
+                          </h3>
+                          <p className="movie-info-text movie-upcoming__info-text">
+                            {movie.genre}
+                          </p>
                         </div>
                       </div>
-                      <div className="movie-info movie-upcoming__info">
-                        <h3 className="movie-info-heading movie-upcoming__info-heading">
-                          {movie.title}
-                        </h3>
-                        <p className="movie-info-text movie-upcoming__info-text">
-                          {movie.genre}
-                        </p>
-                      </div>
-                    </div>
 
-                    {/* Trailer */}
-                    {activeTrailer === movie.id && (
-                      <div
-                        className="search-overley trailer-movie js-overlay"
-                        style={{ display: 'block' }}
-                        onClick={() => setActiveTrailer(null)}
-                      >
+                      {/* Trailer */}
+                      {activeTrailer === movie.id && (
                         <div
-                          className="list-scrollbar trailer-movie-content"
-                          onClick={(e) => e.stopPropagation()}
+                          className="search-overley trailer-movie js-overlay"
+                          style={{ display: 'block' }}
+                          onClick={() => setActiveTrailer(null)}
                         >
-                          <iframe
-                            className="js-iframe"
-                            width="693"
-                            height="390"
-                            src={movie.trailer}
-                            title={movie.title}
-                            frameBorder="0"
-                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                            allowFullScreen
-                          ></iframe>
-                          <div className="trailer-movie-info">
-                            <img
-                              src={movie.poster}
-                              alt={movie.title}
-                              className="trailer-movie-img"
-                            />
-                            <div className="trailer-movie-summary">
-                              <h3 className="trailer-movie-heading">
-                                {movie.title}
-                              </h3>
-                              <p className="trailer-movie-text">
-                                {movie.summary || 'Không có tóm tắt'}
-                              </p>
-                              <div className="trailer-movie-buttons">
-                                <button className="btn">Đặt vé</button>
-                                <button
-                                  className="btn btn-close js-close"
-                                  onClick={() => setActiveTrailer(null)}
-                                >
-                                  Đóng
-                                </button>
+                          <div
+                            className="list-scrollbar trailer-movie-content"
+                            onClick={(e) => e.stopPropagation()}
+                          >
+                            <iframe
+                              className="js-iframe"
+                              width="693"
+                              height="390"
+                              src={movie.trailer}
+                              title={movie.title}
+                              frameBorder="0"
+                              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                              allowFullScreen
+                            ></iframe>
+                            <div className="trailer-movie-info">
+                              <img
+                                src={movie.poster}
+                                alt={movie.title}
+                                className="trailer-movie-img"
+                              />
+                              <div className="trailer-movie-summary">
+                                <h3 className="trailer-movie-heading">
+                                  {movie.title}
+                                </h3>
+                                <p className="trailer-movie-text">
+                                  {movie.summary || 'Không có tóm tắt'}
+                                </p>
+                                <div className="trailer-movie-buttons">
+                                  <button className="btn">Đặt vé</button>
+                                  <button
+                                    className="btn btn-close js-close"
+                                    onClick={() => setActiveTrailer(null)}
+                                  >
+                                    Đóng
+                                  </button>
+                                </div>
                               </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    )}
-                  </div>
-                ))}
+                      )}
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           )}

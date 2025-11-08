@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import ScrollToTop from './ScrollToTop.js';
 import './App.css'
 import Home from './pages/Home'
 import MovieDetail from "./pages/MovieDetail";
@@ -6,11 +7,12 @@ import MovieDetail from "./pages/MovieDetail";
 function App() {
   return (
     <Router>
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path="/movie/:id" element={<MovieDetail />} />
-      </Routes>
-    </Router>
+        <ScrollToTop />
+        <Routes>
+          <Route path='/' element={<Home />} />
+          <Route path="/movie/:id" element={<MovieDetail />} />
+        </Routes>
+      </Router>  
   )
 }
 

@@ -1,0 +1,147 @@
+.movie-reviews{
+    background-color: #faf9fa;
+}
+
+.reviews__list {
+    list-style: none;
+    padding: 0;
+}
+
+
+.reviews__card {
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, .1), 0 4px 6px -4px rgba(0, 0, 0, .1);
+    border: 1px solid var(--color-separate);
+    border-radius: 12px;
+    width: 348px;
+}
+
+
+.reviews__poster {
+    position: relative;
+}
+
+.reviews__poster-img {
+    width: 100%;
+    height: 198px;
+    border-top-left-radius: 12px;
+    border-top-right-radius: 12px;
+    object-fit: cover;
+    object-position: center;
+}
+
+
+.reviews__info {
+    position: absolute;
+    padding: 12px;
+    bottom: 0;
+    color: var(--white-color);
+    width: 100%;
+}
+
+
+.reviews-play {
+    position: relative !important;
+    transition: transform 0.3s ease;
+    transform-origin: center;
+}
+
+.reviews-play:hover{
+    cursor: pointer;
+}
+
+
+.reviews__movie-title {
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.reviews__stats {
+    list-style: none;
+    display: flex;
+    padding: 0;
+    height: 24px;
+    margin-top: 4px;
+    align-items: center;
+}
+
+.reviews__stats-item {
+    display: flex;
+    align-items: center;
+}
+
+.reviews__stats-item + .reviews__stats-item {
+    margin-left: 16px;
+}
+
+.reviews__stats-item svg{
+    width: 24px;
+}
+
+.reviews__stats-item span {
+    font-size: 1.4rem;
+    font-weight: bold;
+    margin-left: 4px;
+}
+
+.reviews__comment {
+    padding: 20px 16px;
+    height: 264px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
+}
+
+.reviews__comment-item{
+    display: flex;
+}
+
+.reviews__comment-avatar-img {
+    width: 32px;
+    border-radius: 50%;
+}
+
+.reviews__comment-body {
+    margin-left: 8px;
+}
+
+.reviews__comment-author {
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.reviews__comment-time {
+    font-weight: 300;
+    color: #a69ba2;
+}
+
+.reviews__comment-text {
+    display: block;
+    color: var(--color-primary);
+}
+
+.reviews__comment-content {
+    font-size: 1.4rem;
+    margin: 4px 0 0 0;
+    height: 48px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    color: #443b41;
+}
+
+.reviews__comment-link {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: var(--black-color);
+    display: flex;
+    padding-left: 40px;
+}
+
+.reviews__comment-link svg {
+    width: 16px;
+    margin: 0 0 0 4px;
+}
+

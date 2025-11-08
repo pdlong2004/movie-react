@@ -11,6 +11,14 @@ const SliderDetail = () => {
   const [trailerUrl, setTrailerUrl] = useState(null);
   const [showTrailer, setShowTrailer] = useState(false);
 
+
+  const renderAgeLimit = (vote) => {
+    if (vote >= 8) return 'P';    
+    if (vote >= 7) return '13+';    
+    if (vote >= 6) return '16+';    
+    return '18+';                  
+  };
+
   useEffect(() => {
     const API_KEY = "ab5d2273d38ebf6426d9efe334ecd2ff";
 
@@ -47,17 +55,18 @@ const SliderDetail = () => {
 
   if (!movie) {
     return (
-        <div className="loading-container">
+      <div className="loading-container">
         <div className="spinner"></div>
         <p>Đang tải dữ liệu phim...</p>
-        </div>
+      </div>
     );
-    }
+  }
+
   const shortOverview = movie.overview?.split(" ").slice(0, 25).join(" ");
   const fullOverview = movie.overview;
 
   return (
-   <div
+    <div
       className="movie-detail"
       style={{
         backgroundImage: `url(${
@@ -91,15 +100,21 @@ const SliderDetail = () => {
 
         {/* Thông tin phim */}
         <div className="movie-detail__info">
-          <div className="movie-detail__age movie-condition">16+</div>
+          
+          <div className={`movie-detail__age movie-condition age-limit age-${renderAgeLimit(movie.vote_average)}`}>
+            {renderAgeLimit(movie.vote_average)}
+          </div>
+
           <h1 className="movie-detail__title">{movie.title}</h1>
 
           <ul className="movie-detail__meta">
-            <li class="movie-detail__text">{movie.original_title}</li>
-            <li class="movie-detail__icon">·</li>
-            <li class="movie-detail__year">{movie.release_date?.slice(0, 4)}</li>
-            <li class="movie-detail__icon">·</li>
-            <li class="movie-detail__duration">{movie.runtime ? `${movie.runtime} phút` : "Đang cập nhật"}</li>
+            <li className="movie-detail__text">{movie.original_title}</li>
+            <li className="movie-detail__icon">·</li>
+            <li className="movie-detail__year">{movie.release_date?.slice(0, 4)}</li>
+            <li className="movie-detail__icon">·</li>
+            <li className="movie-detail__duration">
+              {movie.runtime ? `${movie.runtime} phút` : "Đang cập nhật"}
+            </li>
           </ul>
 
           {/* Đánh giá */}
@@ -209,7 +224,7 @@ const SliderDetail = () => {
               className="js-iframe"
               width="693"
               height="390"
-              src={trailerUrl} 
+              src={trailerUrl}
               title={movie.title}
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"

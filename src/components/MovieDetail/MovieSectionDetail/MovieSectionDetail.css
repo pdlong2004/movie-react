@@ -1,0 +1,78 @@
+.now-playing-container {
+    margin: 28px 0 24px 0;
+}
+
+.now-playing-header {
+    font-size: 2rem;
+    margin: 0 0 8px;
+}
+
+.now-playing-list {
+    list-style: none;
+    padding: 0;
+}
+
+.now-playing-item {
+    padding: 12px 0;
+    display: flex;
+    position: relative;
+    border-bottom: 1px solid var(--color-separate);
+}
+
+.movie-rank {
+    position: absolute;
+    left: 3px;
+    bottom: 20px;
+    color: var(--white-color);
+    font-size: 2.3rem;
+    font-weight: bold;
+    z-index: 2 ;
+}
+
+.movie-poster {
+    width: 64px;
+    border-radius: 5px;
+    transition : transform 0.4s ease;
+    cursor:pointer;
+}
+
+.movie-poster:hover{
+    transform:scale(1.05);
+}
+
+
+.movie-info {
+    padding-left: 16px;
+}
+
+
+.movie-title {
+    margin-top: 4px;
+    font-size: 1.5rem;
+}
+
+.movie-title:hover{
+    cursor: pointer;
+    color : var(--color-primary)
+}
+
+.movie-genres {
+    margin-top: 4px;
+    font-size: 1.3rem;
+    color: var(--text-color);
+}
+
+.movie-rating {
+    font-size: 1.3rem;
+    margin: 4px 0 0 0;
+    color: var(--white-color);
+}
+
+.movie-rating__star {
+    margin-right: 4px;
+}
+
+.movie-rating__text {
+    color: var(--text-color);
+}
+

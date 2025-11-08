@@ -48,7 +48,6 @@ function MovieSection() {
                 .slice(0, 2)
                 .map((g) => g.replace(/Phim/g, '').trim())
                 .join(', ') || 'Chưa có thể loại',
-              age: 'Tất cả',
               poster: `https://image.tmdb.org/t/p/w500${movie.poster_path}`,
               summary: movie.overview,
               trailer: trailerUrl,
@@ -64,6 +63,13 @@ function MovieSection() {
 
     fetchMovies();
   }, []);
+
+   const renderAgeLimit = (vote) => {
+    if (vote >= 8) return 'P';    
+    if (vote >= 7) return '13+';    
+    if (vote >= 6) return '16+';    
+    return '18+';                  
+  };
 
   const indexOfLastMovie = currentPage * moviesPerPage;
   const indexOfFirstMovie = indexOfLastMovie - moviesPerPage;
@@ -86,7 +92,7 @@ function MovieSection() {
         )}
         {currentPage > 1 && (
           <div
-            style={{display : 'block'}}
+            style={{ display: 'block' }}
             className="movie-switch-page movie-return js-return"
             onClick={() => setCurrentPage(currentPage - 1)}
           >
@@ -97,44 +103,56 @@ function MovieSection() {
         {movies.length > 0 && (
           <div className="movie-page js-movie-active active">
             <div className="grid__row">
-              {currentMovies.map((movie, index) => (
-                <div
-                  key={movie.id}
-                  className="grid__column-2-4 movie-content js-movie-content"
-                  onClick={() => navigate(`/movie/${movie.id}`)} 
-                  style={{ cursor: 'pointer' }}
-                >
-                  <div className="movie-card">
-                    <div className="movie-items">
-                      <div className="movie-condition">{movie.age}</div>
-                      <img className="movie-img" src={movie.poster} alt={movie.title} />
-                      <div 
-                        className="btn-play movie-play"
-                        onClick={(e) => {
-                          e.stopPropagation();
-                          setActiveTrailer(movie.id);
-                        }}
-                      >
-                        <i className="fa-solid fa-play"></i>
+             <div className='grid_col-5'>
+                {currentMovies.map((movie, index) => (
+                  <div
+                    key={movie.id}
+                    className="movie-content js-movie-content"
+                    onClick={() => navigate(`/movie/${movie.id}`)}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    <div className="movie-card">
+                      <div className="movie-items">
+                        {/* 🔹 Độ tuổi: class gồm age-limit + age-${số tuổi} */}
+                        <div className={`movie-condition age-limit age-${renderAgeLimit(movie.vote_average)}`}>
+                          {renderAgeLimit(movie.vote_average)}
+                        </div>
+
+                        <img
+                          className="movie-img"
+                          src={movie.poster}
+                          alt={movie.title}
+                        />
+
+                        <div
+                          className="btn-play movie-play"
+                          onClick={(e) => {
+                            e.stopPropagation();
+                            setActiveTrailer(movie.id);
+                          }}
+                        >
+                          <i className="fa-solid fa-play"></i>
+                        </div>
+                      </div>
+
+                      <div className="movie-info movie-section__info">
+                        <span className="movie-number">
+                          {index + 1 + (currentPage - 1) * moviesPerPage}
+                        </span>
+                        <h3 className="movie-info-heading movie-section__info-heading">
+                          {movie.title}
+                        </h3>
+                        <p className="movie-info-text movie-section__info-text">
+                          {movie.genre}
+                        </p>
+                        <p className="movie-rating">
+                          <i className="fa-solid fa-star"></i>{' '}
+                          {movie.vote_average.toFixed(1)}
+                        </p>
                       </div>
                     </div>
 
-
-                    <div className="movie-info movie-section__info">
-                      <span className="movie-number">
-                        {index + 1 + (currentPage - 1) * moviesPerPage}
-                      </span>
-                      <h3 className="movie-info-heading movie-section__info-heading">
-                        {movie.title}
-                      </h3>
-                      <p className="movie-info-text movie-section__info-text">{movie.genre}</p>
-                      <p className="movie-rating">
-                        <i className="fa-solid fa-star"></i> {movie.vote_average.toFixed(1)}
-                      </p>
-                    </div>
-                  </div>
-                   
-                  {/* Trailer */}
+                    {/* Trailer */}
                     {activeTrailer === movie.id && (
                       <div
                         className="search-overley trailer-movie js-overlay"
@@ -181,10 +199,10 @@ function MovieSection() {
                           </div>
                         </div>
                       </div>
-                  )}     
-
-                </div>
-              ))}
+                    )}
+                  </div>
+                ))}
+             </div>
             </div>
           </div>
         )}
