@@ -57,8 +57,13 @@ html{
 .grid_col-3{
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-top: 8px;
   gap: 20px;
+}
+
+.grid_col-12{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 12px;
 }
 
 
@@ -199,6 +204,18 @@ html{
 }
 
 /* trailer-movie */
+
+.search-overley {
+    position: fixed;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    backdrop-filter: blur(6px);
+    z-index: 11;
+}
+
+
 .trailer-movie {
     top: 0;
     display: none;
@@ -211,7 +228,8 @@ html{
     max-height: 80vh;
     border-radius: 8px;
     position: relative;
-    margin: 10vh auto;
+    margin: 16vh auto;
+    transform : transition 0.5s ease-in-out;
 }
 
 .trailer-movie-content iframe {
@@ -275,7 +293,7 @@ html{
 .movie-card{
     text-decoration: none;
     display: block;
-    height: 376px;
+    min-height: 376px;
 }
 
 .movie__heading{
@@ -333,11 +351,11 @@ html{
 
 
 
-.movie-img{
+.movie-img {
     width: 100%;
     transition: transform ease 0.4s;
     display: block;
-    min-height: 270px;
+    min-height: 308px;
 }
 
 
@@ -381,6 +399,8 @@ html{
     color: var(--white-color);    
     border-radius: 3px;
     margin-bottom: 4px;
+    min-width: 20px;
+    text-align: center;
 }
 
 .age-13\+ {
@@ -396,12 +416,47 @@ html{
     background-color: #9B2020;
 }
 
+.age-P{
+    background-color : #579b41
+}
+
 
 .movie-condition{
     position: absolute;
     left: 8px;
     top: 8px;
     z-index: 2;
+}
+
+
+/* Loading */
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  color: #fff;
+  background: radial-gradient(circle at center, #111 0%, #000 100%);
+  text-align: center;
+  font-family: 'Poppins', sans-serif;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid rgba(255, 255, 255, 0.2);
+  border-top-color: #ff0055;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-bottom: 16px;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
 }
 
 

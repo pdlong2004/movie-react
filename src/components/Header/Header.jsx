@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import logo from '../../assets/img/logo.svg';
 import cinemaIcon from '../../assets/img/cenima.svg';
 import '../../assets/font/fontawesome-free-7.0.0-web/fontawesome-free-7.0.0-web/css/all.min.css';
@@ -11,6 +11,7 @@ const Header = () => {
   const [movies, setMovies] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredMovies, setFilteredMovies] = useState([]); 
+  const navigate = useNavigate()
 
   useEffect(() => {
     const API_KEY = 'ab5d2273d38ebf6426d9efe334ecd2ff';
@@ -116,7 +117,13 @@ const Header = () => {
             </li>
 
             <li className="navbar-item">
-              <a href="/cinema/phim-chieu" className="nav-menu-link">Phim chiếu</a>
+              <a 
+                href="" 
+                className="nav-menu-link"
+                onClick={() => navigate('/movie')}
+              >
+                Phim chiếu
+              </a>
             </li>
             <li className="navbar-item">
               <a href="#" className="nav-menu-link">Review phim</a>
@@ -148,7 +155,7 @@ const Header = () => {
 
           <div className={`search__movie ${searchActive ? 'active' : ''}`}>
             <div
-              className="search-overley"
+              className="search-overley search-overley-header"
               onClick={() => setSearchActive(false)}
             ></div>
             <div className="search__body">

@@ -1,6 +1,6 @@
 import React from 'react'
 import '../assets/style/base.css'
-import Breadcrumb from '../components/MovieDetail/Breadcrumb/Breadcrumb.jsx'
+import Breadcrumb from '../components/Breadcrumb/Breadcrumb.jsx'
 import SliderDetail from '../components/MovieDetail/SliderDetail/SliderDetail.jsx'
 import Header from '../components/Header/Header.jsx'
 import Footer from '../components/Footer/Footer.jsx'

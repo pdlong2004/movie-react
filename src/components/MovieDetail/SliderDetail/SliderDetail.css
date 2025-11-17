@@ -32,8 +32,6 @@
 }
 
 .movie-detail__poster {
-    width: 255px;
-    height: 363px;
     position: relative;
 }
 
@@ -229,33 +227,3 @@ span.full-text {
     border: 2px solid #ffec41;
 }
 
-
-
-/* Loading */
-.loading-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-  color: #fff;
-  background: radial-gradient(circle at center, #111 0%, #000 100%);
-  text-align: center;
-  font-family: 'Poppins', sans-serif;
-}
-
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 5px solid rgba(255, 255, 255, 0.2);
-  border-top-color: #ff0055;
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  margin-bottom: 16px;
-}
-
-@keyframes spin {
-  to {
-    transform: rotate(360deg);
-  }
-}

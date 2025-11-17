@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams , useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../SliderDetail/SliderDetail.css';
 import '../../../assets/style/base.css';
 
 const SliderDetail = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
   const [movie, setMovie] = useState(null);
   const [showFull, setShowFull] = useState(false);
   const [trailerUrl, setTrailerUrl] = useState(null);
@@ -203,7 +204,7 @@ const SliderDetail = () => {
               <div className="btn--review btn-ck">
                 <i className="fa-solid fa-star"></i>
               </div>
-              <p>Xem review</p>
+              <p onClick={() => navigate(`/movie/${movie.id}/review`)}>Xem review</p>
             </div>
           </div>
         </div>

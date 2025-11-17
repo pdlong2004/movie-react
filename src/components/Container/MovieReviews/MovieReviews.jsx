@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import '../../../assets/style/base.css';
 import '../MovieReviews/MovieReviews.css';
+import { useNavigate } from 'react-router-dom';
 
 const API_KEY = "ab5d2273d38ebf6426d9efe334ecd2ff";
 const BASE_URL = "https://api.themoviedb.org/3";
@@ -14,6 +15,7 @@ const MovieReviews = () => {
   const [error, setError] = useState(null);
   const [visibleCount, setVisibleCount] = useState(3);
   const [activeTrailer, setActiveTrailer] = useState(null);
+  const navigate = useNavigate()
 
 
   const fetchMovies = async (currentPage) => {
@@ -143,7 +145,10 @@ const MovieReviews = () => {
       <div className="grid">
         <ul className="reviews__list grid_col-3 js-reviews__list">
           {visibleMovies.map((movie) => (
-            <li key={movie.id} className="reviews__card js-movie-content">
+            <li 
+              key={movie.id} 
+              className="reviews__card js-movie-content"
+            >
               <div className="reviews__poster">
                 <img
                   className="reviews__poster-img"
@@ -167,7 +172,11 @@ const MovieReviews = () => {
                       <img className="reviews__stats-momo-img" src="https://homepage.momocdn.net/fileuploads/svg/momo-file-230227094928.svg" alt="" />
                       <span>{movie.vote_average ? movie.vote_average.toFixed(1) : 'N/A'}</span>
                     </li>
-                    <li className="reviews__stats-item">
+                    <li 
+                      onClick={() => navigate(`/movie/${movie.id}/review`)}
+                      style={{ cursor: 'pointer' }}
+                      className="reviews__stats-item"
+                    >
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" className="w-6 opacity-70 group-hover:opacity-100">
                         <path fillRule="evenodd" d="M18 13V5a2 2 0 00-2-2H4a2 2 0 00-2 2v8a2 2 0 002 2h3l3 3 3-3h3a2 2 0 002-2zM5 7a1 1 0 011-1h8a1 1 0 110 2H6a1 1 0 01-1-1zm1 3a1 1 0 100 2h3a1 1 0 100-2H6z" clipRule="evenodd"></path>
                       </svg>
@@ -197,7 +206,12 @@ const MovieReviews = () => {
                     </div>
                   </div>
                 ))}
-                  <a href="#" className="reviews__comment-link">
+                  <a 
+                    href=''
+                    className="reviews__comment-link"
+                    onClick={() => navigate(`/movie/${movie.id}/review`)}
+                    style={{ cursor: 'pointer' }}
+                  >
                     Xem thêm
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="2" stroke="currentColor" aria-hidden="true" className="h-4 w-4 opacity-60"><path strokeLinecap="round" strokeLinejoin="round" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
                   </a>

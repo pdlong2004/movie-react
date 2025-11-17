@@ -102,6 +102,7 @@
 
 .navbar-item:hover .navbar__dropdown-menu{
     display: block;
+    z-index:3;
 }
 
 .nav-menu-link i {
@@ -204,15 +205,8 @@
     display: none;
 }
 
-.search-overley {
+.search-overley-header {
     top: 64px;
-    position: fixed;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    backdrop-filter: blur(6px);
-    z-index: 11;
 }
 
 .search__body {

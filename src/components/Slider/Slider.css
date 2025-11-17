@@ -8,11 +8,13 @@
     font-size: 3.6rem;
     line-height: 46px;
     color: var(--color-primary);
+    font-family: cursive;
 }
 
 .text__description {
     font-size: 1.8rem;
     font-weight: 100;
+    line-height: 2.5rem;
 }
 
 .text__list {
@@ -39,6 +41,7 @@
     background-color: #f5d8ea;
     border-radius: 50%;
     color: var(--color-primary);
+    margin-right : 10px
 }
 
 .slider__img {

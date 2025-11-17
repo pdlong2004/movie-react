@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import axios from "axios";
-import '../Breadcrumb/Breadcrumb.css'
-import '../../../assets/style/base.css'
+import './Breadcrumb.css'
+import '../../assets/style/base.css'
 
 const Breadcrumb = () => {
   const location = useLocation();
